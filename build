@@ -1,0 +1,10 @@
+docker rmi gcp-reservations-exporter
+docker rmi gcr.io/shared-92kdnmcv0fk/gcp-reservations-exporter
+docker images
+sleep 2
+docker build -f ./Dockerfile -t gcp-reservations-exporter .
+gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
+docker tag gcp-reservations-exporter gcr.io/shared-92kdnmcv0fk/gcp-reservationss-exporter
+docker push gcr.io/shared-92kdnmcv0fk/gcp-reservations-exporter
+
+# https://cloud.google.com/container-registry/docs/pushing-and-pulling
