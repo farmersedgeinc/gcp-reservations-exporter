@@ -1,0 +1,43 @@
+{
+  "project_configs_project": "gcp-reservations",
+  "project_configs_branch": "gcp-reservations-exporter",
+  "gcr": true,
+  "components": {
+    "exporter": {
+      "context": ".",
+      "dockerfile": "./Dockerfile"
+    }
+  },
+  "branches": {
+    "master": {
+      "env_name": "prod-a",
+      "context": "gke-prod-a",
+      "namespace": "gcp-reservations",
+      "values": ["envs/gke-prod-a.yaml"],
+      "deploy_test": {
+        "resources": [],
+        "timeout": 900
+      }
+    },
+    "test-b": {
+      "env_name": "test-b",
+      "context": "gke-test-b",
+      "namespace": "gcp-reservations",
+      "values": ["envs/gke-test-b.yaml"],
+      "deploy_test": {
+        "resources": [],
+        "timeout": 900
+      }
+    },
+    "sandbox-a": {
+      "env_name": "sandbox-a",
+      "context": "gke-sandbox-a",
+      "namespace": "gcp-reservations",
+      "values": ["envs/gke-sandbox-a.yaml"],
+      "deploy_test": {
+        "resources": [],
+        "timeout": 900
+      }
+    }
+  }
+}
