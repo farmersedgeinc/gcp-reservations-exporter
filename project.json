@@ -1,6 +1,5 @@
 {
   "project_configs_project": "gcp-reservations",
-  "project_configs_branch": "gcp-reservations-exporter",
   "gcr": true,
   "components": {
     "exporter": {
