@@ -1,7 +1,7 @@
 import time
 from prometheus_client.core import GaugeMetricFamily, REGISTRY, CounterMetricFamily
 from prometheus_client import start_http_server
-# import requests
+### import requests
 import json
 
 class CustomCollector(object):
