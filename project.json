@@ -8,7 +8,7 @@
     }
   },
   "branches": {
-    "master": {
+    "main": {
       "env_name": "prod-a",
       "context": "gke-prod-a",
       "namespace": "gcp-reservations",
@@ -18,7 +18,7 @@
         "timeout": 900
       }
     },
-    "test-b": {
+    "test": {
       "env_name": "test-b",
       "context": "gke-test-b",
       "namespace": "gcp-reservations",
@@ -28,7 +28,7 @@
         "timeout": 900
       }
     },
-    "sandbox-a": {
+    "sandbox": {
       "env_name": "sandbox-a",
       "context": "gke-sandbox-a",
       "namespace": "gcp-reservations",
