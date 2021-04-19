@@ -33,9 +33,9 @@ class CustomCollector(object):
         }
         list_of_metrics = d1["garage"]
         for key in list_of_metrics:
-           g = GaugeMetricFamily("michelcars", 'Help text', labels=['michelspecificcar'])
-           g.add_metric([float(key['vehicle'])], key['value'])
-           yield g
+           gauge = GaugeMetricFamily("michelcars", 'Help text', labels=['michelspecificcar'])
+           gauge.add_metric([str(key['vehicle'])], float(key['value']))
+           yield gauge
 
 if __name__ == '__main__':
     start_http_server(8003)
