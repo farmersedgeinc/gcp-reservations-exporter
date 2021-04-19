@@ -6,9 +6,8 @@ RUN adduser -D -u 25000 -g app -h /usr/src/app app && \
 
 RUN apk add tzdata
 RUN apk add curl
-RUN apk add bash
-# RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=~/gcloud --disable-prompts
-# ENV PATH $PATH:/gcloud/bin
+RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=~/gcloud --disable-prompts
+RUN source /usr/src/app/gcloud/google-cloud-sdk/path.bash.inc
 
 EXPOSE 8003
 
@@ -17,7 +16,7 @@ COPY Pipfile* ./
 RUN pipenv install --system --deploy
 
 COPY exporter.py ./
-COPY setup.cfg ./
+# COPY setup.cfg ./
 
 USER app
 CMD [ "python", "-u", "./exporter.py" ]
