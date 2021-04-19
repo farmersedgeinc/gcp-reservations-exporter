@@ -39,9 +39,9 @@ class CustomCollector(object):
 
 if __name__ == '__main__':
     try:
-        gcloud_project_id = os.environ['QCP_PROJECT_ID']
+        gcloud_project_id = os.environ['GCP_PROJECT_ID']
     except KeyError:
-        print('QCP_PROJECT_ID must be defined')
+        print('GCP_PROJECT_ID must be defined')
         sys.exit(1)
 
     start_http_server(8003)
