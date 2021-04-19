@@ -6,8 +6,8 @@ RUN adduser -D -u 25000 -g app -h /usr/src/app app && \
 
 RUN apk add tzdata
 RUN apk add curl
-RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=~/gcloud --disable-prompts
-RUN source /usr/src/app/gcloud/google-cloud-sdk/path.bash.inc
+# RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=~/gcloud --disable-prompts
+# RUN source /usr/src/app/gcloud/google-cloud-sdk/path.bash.inc
 
 EXPOSE 8003
 
