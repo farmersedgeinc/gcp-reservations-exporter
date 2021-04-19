@@ -47,7 +47,7 @@ if __name__ == '__main__':
     except KeyError:
         print('GCP_PROJECT_ID must be defined')
         sys.exit(1)
-
+    
     start_http_server(8003)
     REGISTRY.register(CustomCollector())
     while True:
