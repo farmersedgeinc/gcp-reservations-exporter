@@ -38,6 +38,12 @@ class CustomCollector(object):
            yield gauge
 
 if __name__ == '__main__':
+    try:
+        gcloud_project_id = os.environ['QCP_PROJECT_ID']
+    except KeyError:
+        print('QCP_PROJECT_ID must be defined')
+        sys.exit(1)
+
     start_http_server(8003)
     REGISTRY.register(CustomCollector())
     while True:
