@@ -15,7 +15,8 @@ class CustomCollector(object):
         # Start with this, then try the json output of the `gcloud compute reservations list --format="json"`
 #        mylog = subprocess.run(['gcloud compute reservations list --format="json"'], stdout=subprocess.PIPE)
         mylog = subprocess.Popen(['date', '-u'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        mylog.stdout.decode('utf-8')
+        stdout,stderr = out.communicate()
+        print(stdout)
         d1 = {
             "garage": [
                 {
