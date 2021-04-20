@@ -8,7 +8,7 @@ RUN apk add tzdata
 RUN apk add curl
 RUN apk add bash
 RUN curl -sSL https://sdk.cloud.google.com > /tmp/gcl && bash /tmp/gcl --install-dir=./gcloud --disable-prompts
-# RUN source /usr/src/app/gcloud/google-cloud-sdk/path.bash.inc
+RUN NV PATH $PATH:~/gcloud/google-cloud-sdk/bin
 
 EXPOSE 8003
 
