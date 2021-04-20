@@ -8,4 +8,4 @@ pylint = "*"
 
 [packages]
 google-api-python-client = "==1.6.2"
-prometheus_client = "==0.4.2"
+prometheus_client = "==0.10.1"

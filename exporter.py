@@ -8,7 +8,21 @@ References:
   https://stackoverflow.com/questions/59954984/prometheus-python-exporter-for-json-values
 
 Testing:
-  Create your venv, and collect locally with `curl http://127.0.0.1:8003`
+1. Set up the GCP Service account locally in `/service-account/gcp_reservations_sa.json`, as
+   found in the helm charts.
+2. Create your venv:
+   python -m virtualenv myenv
+   source myenv/bin/activate
+   GCP_PROJECT_ID=test-4f727257h6h
+   export GCP_PROJECT_ID
+   GCP_APPLICATION_CREDENTIALS=/service-account/gcp_reservations_sa.json
+   export GCP_APPLICATION_CREDENTIALS
+   pip install prometheus_client
+   python ./exporter.py
+   (run `deactivate` once you are done)
+3. Collect locally with `curl http://127.0.0.1:8003`
+4. You may have to logout/login of the GCP console to reset your personal account since
+   you have been using a Service Account.
 """
 import os
 import time
@@ -45,6 +59,14 @@ class CustomCollector():
         csvfile.close()
 
 if __name__ == '__main__':
+    try:
+        activate_service_account_cmd = 'gcloud auth activate-service-account --key-file ' + \
+            os.environ['GCP_APPLICATION_CREDENTIALS'] + ' 2>&1'
+        os.system(activate_service_account_cmd)
+    except KeyError:
+        print('Failed to activate GCP Service Account')
+        sys.exit(1)
+
     try:
         set_project_cmd = 'gcloud config set project ' + os.environ['GCP_PROJECT_ID']
         os.system(set_project_cmd)
