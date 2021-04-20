@@ -14,9 +14,12 @@ class CustomCollector(object):
         # response = requests.get('https://api.test.com/v1/data', auth= ('abc@gg.com', 'xxrty'))
         # Start with this, then try the json output of the `gcloud compute reservations list --format="json"`
         # reslist = subprocess.Popen(['gcloud', 'compute', 'reservations', 'list', '--format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        reslist = subprocess.Popen(['gcloud compute reservations list --format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        stdout,stderr = reslist.communicate()
-        print(stdout)
+        # reslist = subprocess.Popen(['gcloud compute reservations list --format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        #stdout,stderr = reslist.communicate()
+        #print(stdout)
+        cmd = 'gcloud compute reservations list --format="json"'
+        os.system(cmd)
+        
         d1 = {
             "garage": [
                 {
@@ -39,18 +42,22 @@ class CustomCollector(object):
         }
         list_of_metrics = d1["garage"]
         for key in list_of_metrics:
+           print('metrics')
            gauge = GaugeMetricFamily("michelcars", 'Help text', labels=['michelspecificcar'])
            gauge.add_metric([str(key['vehicle'])], float(key['value']))
            yield gauge
 
 if __name__ == '__main__':
     try:
+        print('hello');
         gcloud_project_id = os.environ['GCP_PROJECT_ID']
     except KeyError:
         print('GCP_PROJECT_ID must be defined')
         sys.exit(1)
     
+    print('start http server')
     start_http_server(8003)
     REGISTRY.register(CustomCollector())
+    print('registry')
     while True:
         time.sleep(10)
