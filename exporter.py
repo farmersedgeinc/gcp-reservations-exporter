@@ -13,7 +13,8 @@ class CustomCollector(object):
     def collect(self):
         # response = requests.get('https://api.test.com/v1/data', auth= ('abc@gg.com', 'xxrty'))
         # Start with this, then try the json output of the `gcloud compute reservations list --format="json"`
-        reslist = subprocess.Popen(['gcloud', 'compute', 'reservations', 'list', '--format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        # reslist = subprocess.Popen(['gcloud', 'compute', 'reservations', 'list', '--format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        reslist = subprocess.Popen(['gcloud compute reservations list --format="json"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout,stderr = reslist.communicate()
         print(stdout)
         d1 = {
