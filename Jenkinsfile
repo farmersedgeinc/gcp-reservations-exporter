@@ -1,2 +1,2 @@
-@Library('fe-jenkins-libs@v1')_
+@Library('fe-jenkins-libs@jenkins-new')_
 buildProject('DockerfileProject')
