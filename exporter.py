@@ -21,18 +21,14 @@ Testing:
    python ./exporter.py
    (run `deactivate` once you are done)
 3. Collect locally with `curl http://127.0.0.1:8003`
-4. You may have to logout/login of the GCP console to reset your personal account since
-   you have been using a Service Account.
+4. Note that since the service account is now being used, to restore your normal gcloud
+   account and functionality you will need to `gcloud auth revoke` and `gcloud auth login` again.
 """
 import os
 import time
 import sys
 from prometheus_client.core import GaugeMetricFamily, REGISTRY
 from prometheus_client import start_http_server
-# References:
-# https://www.gspann.com/resources/blogs/developing-custom-exporter-for-prometheus-using-python/
-# https://github.com/prometheus/client_python
-# https://stackoverflow.com/questions/59954984/prometheus-python-exporter-for-json-values
 
 class CustomCollector():
     """
