@@ -74,6 +74,6 @@ if __name__ == '__main__':
     start_http_server(8003)
     REGISTRY.register(CustomCollector())
     while True:
-        time.sleep(10)
+        time.sleep(60)
 
 # Cheers!
